@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="/css/style.css">
+    <title>OTP Timer</title>
+</head>
+<body>
+    
+    <div class="container-fluid bg-primary-site-darker full-height">
+        <div class="container">
+
+            <div class="row align-items-center full-height">
+                <div class="col-md-8 col-lg-5 col-xl-4 bg-white rounded-curve px-4 px-sm-5 pt-4 pb-2 mx-auto">
+                    
+                    <div class="panel-title mb-4">
+                        <h2 class="text-center">
+                            Enter Received OTP
+                        </h2>
+                    </div>   
+
+                    <% if (otpError) { %>
+                        <div class="alert alert-danger" role="alert">
+                            Invalid OTP. Please enter a valid OTP.
+                        </div>
+                    <% } else if (otpExpired) { %>
+                        <div class="alert alert-danger" role="alert">
+                            OTP expired. Please request a new OTP.
+                        </div>
+                    <% } %>
+
+                    <form method="POST">
+                        <div class="mb-3">
+                            <input type="number" id="otp" name="otp" placeholder="Enter OTP" maxlength="6">
+                        </div>
+                        <% if (!otpExpired) { %>
+                        <input type="submit" onclick="validateOTP()" class="btn btn-primary" value="Verify">
+                        <% } %>
+
+                    </form>
+                    <div class="mt-3 d-flex justify-content-center border-top pt-2">
+                        <th>
+                            <td>
+                                <a href="/" class="btn btn-link">Home</a>  
+                            </td>
+                            <td>
+                                <a  id="resendBtn" class="btn btn-link" onclick="resendOTP()" disabled>Resend OTP</a>  
+                            </td>
+                        </th>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function validateOTP() {
+            var enteredOTP = document.getElementById("otp").value;
+            var otp = '<%= otp %>'; // get the OTP value from EJS template
+
+            if (enteredOTP === otp) {
+                // Redirect to the new password page
+                window.location.href = "/newPassword";
+            } else {
+                alert("Invalid OTP. Please enter a valid OTP.");
+            }
+        }
+    </script>
+    <script>
+        var resendBtn = document.getElementById("resendBtn");
+        var timer = 5; // in seconds
+    
+        function startTimer() {
+            setInterval(function() {
+                timer--;
+                if (timer <= 0) {
+                    resendBtn.disabled = false;
+                }
+            }, 1000);
+        }
+    
+        function resendOTP() {
+            // your code to resend OTP
+            timer = 5; // reset timer
+            resendBtn.disabled = true;
+            startTimer();
+        }
+    
+        startTimer();
+    </script>
+    <script src="/js/jquery-3.6.0.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

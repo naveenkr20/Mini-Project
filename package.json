@@ -1,0 +1,36 @@
+{
+  "name": "employee-leave-automation-system",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "dev": "env-cmd -f ./dev.env nodemon src/app.js -e js,ejs,css",
+    "play": "env-cmd -f ./dev.env node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pigmeister/Employee-Leave-Automation-System.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pigmeister/Employee-Leave-Automation-System/issues"
+  },
+  "homepage": "https://github.com/pigmeister/Employee-Leave-Automation-System#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.0",
+    "node-cron": "^3.0.2",
+    "validator": "^13.7.0"
+  },
+  "description": "",
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "nodemon": "^2.0.20"
+  }
+}

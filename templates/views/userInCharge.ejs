@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Duty In-Charge</title>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container-fluid bg-primary-site-darker">
+            <div class="py-2 row">
+                <div class="col-md">
+                    <ul class="nav d-flex m-0 justify-content-center justify-content-md-start">
+                        <li class="nav-item" >
+                            <a href="/user" class="nav-link" style="color:#FFFFFF;">Profile</a>
+                        </li>
+                        <li class="nav-item" >
+                            <a href="/user/history" class="nav-link" style="color:#FFFFFF;">History</a>
+                        </li>
+                        <li class="nav-item" >
+                            <a href="/user/inCharge" class="nav-link" style="color:#FFFFFF;">Duty In-Charge</a>
+                        </li>
+                        <li class="nav-item" >
+                            <a href="/leaveForm" class="nav-link" style="color:#FFFFFF;">Apply for Leave</a>
+                        </li>
+                        <li class="nav-item" >
+                            <a href="/logout" class="nav-link" style="color:#FFFFFF;">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <table class="content-table">
+        <tr>
+            <th>
+                Employee Name
+              </th>
+              <th>
+                From
+              </th>
+              <th>To</th>
+              <th>Type of Leave</th>
+              <th></th>
+        </tr>
+        <% var i = 1 %>
+        <% leaves.forEach((e) => { %>
+            <tr class="table-row">
+                <% var current = "myForm" + i.toString() %>
+                <td><%= e.name %></td>
+                <td><%= e.startTime.toUTCString().slice(5, 16)%></td>
+                <td><%= e.endTime.toUTCString().slice(5, 16)%></td>
+                <td><%= e.leaveType%></td>
+                <td><button class="open-button" data-id="<%=e._id%>" data-toggle="modal" data-target="#leaveInfo">Details</button></td>
+                <% i = i+1 %>
+            </tr>
+        <% }) %>
+    </table>
+
+    <div class="modal fade" id="leaveInfo" tabindex="-1" role="dialog" aria-labelledby="AddNewModel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Why are You here</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+
+                    <div class="label-info-group row align-items-center" id="info-name">
+                        <h6 class="col-7 m-0 mr-3 p-0 text-left">Name:</h6>
+                        <span>Gryffinbaazzi</span>
+                    </div>
+
+                    <div class="label-info-group row align-items-center" id="info-email">
+                        <h6 class="col-7 m-0 mr-3 p-0 text-left">E-mail:</h6>
+                        <span>gryffin@gmail.com</span>
+                    </div>
+
+                    <div class="label-info-group row align-items-center" id="info-mobile">
+                        <h6 class="col-7 m-0 mr-3 p-0 text-left">Mobile Number:</h6>
+                        <span>9999999999</span>
+                    </div>
+
+                    <div class="label-info-group row align-items-center" id="info-designation">
+                        <h6 class="col-7 m-0 mr-3 p-0 text-left">Designation:</h6>
+                        <span>Professor</span>
+                    </div>
+
+                    <div class="label-info-group row align-items-center" id="info-department">
+                        <h6 class="col-7 m-0 mr-3 p-0 text-left">Department:</h6>
+                        <span>IT</span>
+                    </div>
+
+                    <div class="label-info-group row align-items-center" id="info-start-time">
+                        <h6 class="col-7 m-0 mr-3 p-0 text-left">Start Date:</h6>
+                        <span>01/01/2000</span>
+                    </div>
+
+                    <div class="label-info-group row align-items-center" id="info-end-time">
+                        <h6 class="col-7 m-0 mr-3 p-0 text-left">End Date:</h6>
+                        <span>01/01/2000</span>
+                    </div>
+
+                    <div class="label-info-group row align-items-center" id="info-leave-type">
+                        <h6 class="col-7 m-0 mr-3 p-0 text-left">Leave Type:</h6>
+                        <span>CL</span>
+                    </div>
+
+                    <div class="label-info-group row align-items-center" id="info-reason">
+                        <h6 class="col-7 m-0 mr-3 p-0 text-left">Reason:</h6>
+                        <span>Sick</span>
+                    </div>
+
+                    <div class="label-info-group row align-items-center" id="info-address-during-leave">
+                        <h6 class="col-7 m-0 mr-3 p-0 text-left">Address During Leave:</h6>
+                        <span>Lucknow</span>
+                    </div>
+
+                    <form method="POST" class="mt-3" id="info-form">
+                        <input type="hidden" id="id" name="_id">
+                        <!-- <div class="form-group row">
+                            <label for="modal-form-comment" class="col-3 m-0 mr-3 p-0 text-right">Comment:</label>
+                            <div class="col m-0 mr-3 p-0">
+                                <textarea name="comment" id="modal-form-comment" class="w-100 form-control"></textarea>
+                            </div>
+                        </div> -->
+                        <div class="form-group">
+                            I will be taking charge of the duties
+                            <input type="submit" name="status" value="Yes" class="btn btn-accent-site">
+                            <input type="submit" name="status" value="No" class="btn btn-outline-danger">
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script src="/js/jquery-3.6.1.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+        $('#leaveInfo').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var _id = button.data('id') 
+            const pen = <%- JSON.stringify(leaves) %>
+            const e = pen.find((x)=>x._id==_id)
+            const inc = <%- JSON.stringify(dates) %>
+            // const et = e.endTime.toUTCString()
+            console.log(e)
+            var modal = $(this)
+            modal.find('.modal-title').text("Pending request for "+e.name)
+            modal.find('.modal-body .container #info-name span').text(e.name)
+            modal.find('.modal-body .container #info-email span').text(e.email)
+            modal.find('.modal-body .container #info-mobile span').text(e.mobile)
+            modal.find('.modal-body .container #info-designation span').text(e.designation)
+            modal.find('.modal-body .container #info-department span').text(e.department)
+            modal.find('.modal-body .container #info-start-time span').text(inc[e._id].startDate)
+            modal.find('.modal-body .container #info-end-time span').text(inc[e._id].endDate)
+            modal.find('.modal-body .container #info-leave-type span').text(e.leaveType)
+            modal.find('.modal-body .container #info-reason span').text(e.reason)
+            modal.find('.modal-body .container #info-address-during-leave span').text(e.addressDuringLeave)
+            modal.find('.modal-body .container #info-form #id').attr("value", e._id);
+        })
+    })
+    </script>
+
+</body>
+</html>

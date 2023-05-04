@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Register</title>
+</head>
+<body>
+    <div class="container-fluid bg-primary-site-darker full-height">
+        <div class="container">
+            <div class="row align-items-center full-height">
+                <div class="col-md-8 col-lg-5  rounded-curve bg-white px-4 px-sm-5 pt-4 pb-3 mx-auto">
+                    <div class="panel-title mb-4">
+                        <h2 class="text-center">Register</h2>
+                    </div>
+                    
+                    <form method="POST">
+                        <div class="form-group mb-2">
+                            <label for="regis-username">Name</label>
+                            <input id="regis-username" type="text" name="username" class="form-control" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Email</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Mobile Number</label>
+                            <input type="tel" name="mobile" class="form-control" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Password</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Designation</label>
+                            <input type="text" name="designation" class="form-control" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Department</label>
+                            <select name="department" required>
+                                <option value="IT">IT</option>
+                                <option value="CS">CS</option>
+                                <option value="MATH">Mathematics</option>
+                                <option value="NF">Non-Faculty</option>
+                            </select>
+                        </div>
+                        <fieldset class="form-group mb-2">
+                            <div class="row">
+                                <legend class="col-form-label col-sm-3 pt-0">Gender:</legend>
+                                <div class="col-sm-3">
+                                    <div class="form-check">
+                                        <input type="radio" name="gender" id="gender-male" value="Male" class="form-check-input">
+                                        <label for="gender-male" class="form-check-label">Male</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="col-3 form-check">
+                                        <input type="radio" name="gender" id="gender-female" value="Female" class="form-check-input">
+                                        <label for="gender-female" class="form-check-label">Female</label>
+                                    </div> 
+                                </div>
+                            </div>
+                        </fieldset>
+                        <input type="submit" value="Sign Up" class="btn btn-primary-site ">
+                    </form>
+                    
+                    <div class="mt-3 d-flex justify-content-center border-top pt-2">
+                        <a href="/admin" class="btn btn-link">Go to Admin Page</a>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        window.onload = function() {
+            <% if(error) { %>
+                alert("Unable to Register!")
+            <% } %>
+        }
+    </script>
+    <script src="/js/jquery-3.6.0.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+<!--editor Naveen -->
+<!-- HTML code for the registration form goes here... -->
+
+<script>
+    function showRegistrationPopup() {
+      // create a new div element to contain the popup content
+      const popup = document.createElement('div');
+      popup.classList.add('popup');
+      
+      // create a message element to display the success message
+      const message = document.createElement('p');
+      message.textContent = 'Your registration was successful!';
+    
+      // add the message element to the popup div
+      popup.appendChild(message);
+    
+      // add the popup div to the page body
+      document.body.appendChild(popup);
+    
+      // set a timeout to remove the popup after a certain amount of time
+      setTimeout(function() {
+        document.body.removeChild(popup);
+      }, 10000); // popup will disappear after 3 seconds (3000 milliseconds)
+    }
+  
+    // call the showRegistrationPopup() function when the page loads
+    window.onload = function() {
+      showRegistrationPopup();
+    }
+  </script>
+  
+</html>
+
